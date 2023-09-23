@@ -1,9 +1,15 @@
-import React from 'react'
+import { produce } from 'immer';
 
 const App = () => {
-  return (
-    <div>App</div>
-  )
+
+  const employee = { name: "mitesh", age: 20 };
+  const newEmployee = produce(employee,(draftState) => {
+    draftState.name = "Ladva"
+  });
+
+  console.log("employee",employee);
+  console.log("newEmployee",newEmployee);
+
 }
 
-export default App
+export default App;
