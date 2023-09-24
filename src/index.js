@@ -1,9 +1,10 @@
 
 import store from "./store/configureStore";
-import { addTask, completeTask } from "./store/tasks";
+import { addTask, completedTask } from "./store/tasks";
 
-store.dispatch(addTask("Task another"))
+store.dispatch(addTask({task : "Task 1"}));
+store.dispatch(addTask({task : "Task 2"}));
 console.log(store.getState());
 
-store.dispatch(completeTask(1))
+store.dispatch(completedTask({id : 1}));
 console.log(store.getState());

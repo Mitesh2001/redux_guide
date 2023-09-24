@@ -1,37 +1,24 @@
-const ADD_TASK = 'ADD_TASK';
-const REMOVE_TASK = 'REMOVE_TASK';
-const TASK_COMPLETED = 'TASK_COMPLETED';
+import { createAction, createReducer } from "@reduxjs/toolkit";
 
-export const addTask = task => ({ type : ADD_TASK, payload : {task} });
+export const addTask = createAction('ADD_TASK')
 
-export const removeTask = id => ({ type : REMOVE_TASK, payload : {id} });
+export const removeTask = createAction('REMOVE_TASK')
 
-export const completeTask = id => ({ type : TASK_COMPLETED, payload : {id} });
+export const completedTask = createAction('TASK_COMPLETED')
 
 let id = 0;
 
-export default function reducer(state=[],action) {
-    switch (action.type) {
-        case ADD_TASK:
-            return [
-                ...state,
-                {
-                    id : ++id,
-                    task : action.payload.task,
-                    completed : false
-                }
-            ]
-
-        case REMOVE_TASK:
-            return state.filter(task => task.id !== action.payload.id)
-
-        case TASK_COMPLETED:
-            return state.map(task => task.id === action.payload.id ? {
-                ...task,
-                completed : true
-            } : task)
-
-        default:
-            return state
-    }
-}
+export default createReducer([],{
+    "ADD_TASK" : (state,action) => {
+        state.push({
+            id : ++id,
+            task : action.payload.task,
+            completed : false
+        })
+    },
+    "REMOVE_TASK" : (state,action) => state.filter(task => task.id !== action.payload.id),
+    "TASK_COMPLETED" :  (state,action) => state.map(task => task.id === action.payload.id ? {
+                        ...task,
+                        completed : true
+                    } : task)
+})
