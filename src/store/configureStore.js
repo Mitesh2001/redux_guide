@@ -1,10 +1,9 @@
 import employeeReducer from "./employees";
-import products from "./products";
 import { configureStore } from "@reduxjs/toolkit";
+import products from "./products";
 
 const store = configureStore({reducer : {
-    products: products,
-    employee : employeeReducer
+    products: products
 }});
 
 export default store;

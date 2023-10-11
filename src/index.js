@@ -1,10 +1,16 @@
-
 import axios from "axios";
 import store from "./store/configureStore";
-import { setProducts } from "./store/products";
+import { addEmployee } from "./store/employees";
+import { fetchProducts } from "./store/products";
 
-const getProducts = async () => {
-    const products = await axios.get(`https://fakestoreapi.com/products`);
-    store.dispatch(setProducts({products:products.data}));
-}
-getProducts()
+// const fetchProducts = async () => {
+//     try {
+//         const response = await axios.get(`https://jsonplaceholder.typicode.com/todos`);
+//         store.dispatch(getProducts({ products: response.data }));
+//     } catch (error) {
+//         store.dispatch({type:"SHOW_ERROR",payload:{error:error.message}})
+//     }
+// }
+// fetchProducts();
+
+store.dispatch(fetchProducts());
