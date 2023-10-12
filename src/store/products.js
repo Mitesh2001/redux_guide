@@ -11,7 +11,7 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk("fetchProducts", async (a,{rejectWithValue}) => {
     try {
-        const response = await axios.get('/todoss');
+        const response = await axios.get('/todos');
         return {tasks : response.data}
     } catch (error) {
         return rejectWithValue({error : error.message})
