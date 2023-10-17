@@ -13,4 +13,4 @@ import { fetchProducts } from "./store/products";
 // }
 // fetchProducts();
 
-store.dispatch(fetchProducts());
+store.dispatch({type : 'SHOW_ERROR', payload : {error : "User not Found !"}});
